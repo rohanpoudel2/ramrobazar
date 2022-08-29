@@ -14,4 +14,19 @@
     background-color: $heading-color;
     height: 3px;
   }
+
+  .change-icon {
+    color: $light-color;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    cursor: pointer;
+    font-size: 28px;
+  }
+
+  .gridProduct {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+  }
 }

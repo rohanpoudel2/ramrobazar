@@ -7,6 +7,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import GenericProductCard from '../genericproductcard/GenericProductCard';
+import GridViewIcon from '@mui/icons-material/GridView';
+import SwiperProductCard from '../swiperproductcard/SwiperProductCard';
+import ViewListIcon from '@mui/icons-material/ViewList';
+
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -47,6 +51,15 @@ const Tabss = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
+  const [toggleview, SetToggleView] = React.useState(true);
+
+  const toggleView = () => {
+    SetToggleView(!toggleview);
+    console.log(toggleview)
+  }
+
   return (
     <div className="tabs">
       <Box sx={{ width: '100%' }}>
@@ -54,13 +67,53 @@ const Tabss = () => {
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Recent" {...a11yProps(0)} />
             <Tab label="Recommendation" {...a11yProps(1)} />
+            {toggleview &&
+              <GridViewIcon className='change-icon' onClick={() => toggleView()} />
+            }
+            {!toggleview &&
+              <ViewListIcon className='change-icon' onClick={() => toggleView()} />
+            }
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <GenericProductCard />
+          {toggleview ?
+            <>
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+            </>
+            :
+            <div className='gridProduct'>
+              <SwiperProductCard />
+              <SwiperProductCard />
+              <SwiperProductCard />
+              <SwiperProductCard />
+            </div>
+          }
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          {toggleview ?
+            <>
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+              <GenericProductCard />
+            </>
+            :
+            <div className='gridProduct'>
+              <SwiperProductCard />
+              <SwiperProductCard />
+              <SwiperProductCard />
+              <SwiperProductCard />
+            </div>
+          }
         </TabPanel>
       </Box>
     </div>

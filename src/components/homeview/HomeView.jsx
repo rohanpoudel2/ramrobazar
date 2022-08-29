@@ -35,8 +35,10 @@ const HomeView = () => {
               <Tabss />
             </div>
           </div>
-          <div className="right">
-            right
+          <div className="main-right">
+            <span>
+              RamroSelect | Terms of Use | Safety Tips | Posting Rules | FAQ | Contact | Report Bugs
+            </span>
           </div>
         </div>
       </div>
