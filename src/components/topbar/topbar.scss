@@ -1,0 +1,121 @@
+@import '../../styles/colors.scss';
+
+.topbar {
+  background-color: $primary-color;
+  padding: 15px 0px;
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  z-index: 100;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left {
+      flex: 1;
+
+      .logo {
+        font-weight: 800;
+        font-size: 28px;
+        color: $secondary-color;
+      }
+    }
+
+    .middle {
+      flex: 2;
+
+      .searchbar {
+        display: flex;
+        align-items: center;
+        margin: 0px auto;
+        border: 1px solid $body-color;
+        border-radius: 10px;
+        padding: 5px;
+        border-color: $light-color;
+        width: 80%;
+
+        .icon {
+          padding: 5px;
+        }
+
+        input {
+          border: none;
+          width: 95%;
+          height: 100%;
+          outline: none;
+          background-color: transparent;
+
+          &::placeholder {
+            letter-spacing: 1px;
+            color: $light-color;
+            font-weight: 200;
+          }
+        }
+      }
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+
+      .buttons {
+        display: flex;
+        height: 100%;
+
+        .active {
+          display: flex;
+          flex-direction: column;
+
+          .indicator {
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: $secondary-color;
+            bottom: 0;
+          }
+        }
+
+        .button {
+
+          margin-right: 25px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          &:nth-of-type(4) {
+            margin-right: 0px;
+
+            span {
+              margin-left: 10px;
+              font-weight: 400;
+            }
+          }
+
+          &:nth-of-type(3) {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 10px 10px 43px -20px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 10px 10px 43px -20px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 10px 10px 43px -20px rgba(0, 0, 0, 0.5);
+
+            .icon {
+              font-size: 18px;
+              padding: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.tabs {
+  font-family: $main-font;
+  font-weight: 300;
+  padding: 10px;
+
+  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: $heading-color;
+  }
+
+  .css-1aquho2-MuiTabs-indicator {
+    background-color: $heading-color;
+    height: 3px;
+  }
+}

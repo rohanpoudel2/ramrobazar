@@ -1,0 +1,17 @@
+@import '../../styles/colors.scss';
+
+.category {
+  background-color: $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 200;
+  padding: 5px 10px;
+  margin-right: 20px;
+
+  .icon {
+    margin-left: 5px;
+    font-size: 18px;
+  }
+}

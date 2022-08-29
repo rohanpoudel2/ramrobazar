@@ -1,0 +1,33 @@
+@import '../../styles/colors.scss';
+
+.categorylistitem {
+  display: flex;
+  align-items: center;
+  margin: 5px 0px;
+  color: $heading-color;
+  font-size: 14px;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0px 5px;
+
+  &:hover {
+    background-color: rgba($heading-color, 0.2);
+    border-radius: 5px;
+  }
+
+  .categorylist {
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+
+  .icon {
+    font-size: 12px;
+    color: $light-color;
+  }
+
+}
