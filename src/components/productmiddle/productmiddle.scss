@@ -1,0 +1,68 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.productmiddle {
+  .title-text {
+    font-size: 24px;
+    color: $heading-color;
+    font-weight: 600;
+  }
+
+  .brand {
+    font-size: 12px;
+    font-weight: 300;
+    margin-left: 10px;
+    color: $light-color;
+  }
+
+  .tab {
+    margin-top: 20px;
+    font-family: $main-font;
+
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+      color: $heading-color;
+    }
+
+    .css-1aquho2-MuiTabs-indicator {
+      background-color: $heading-color;
+      height: 3px;
+    }
+
+    .icon {
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+
+    .product-desc {
+      font-weight: 300;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .sub-title {
+      font-size: 18px;
+      color: $heading-color;
+      margin: 20px 0px;
+    }
+
+    .product-details {
+      padding: 20px;
+      background-color: #fcfcfc;
+      border-radius: 5px;
+
+      .detail {
+        display: flex;
+        align-items: center;
+        font-weight: 300;
+        font-size: 14px;
+        border-bottom: 1px solid lightgray;
+
+        .left {
+          background-color: #fcfcfc;
+        }
+      }
+    }
+
+  }
+}
