@@ -3,6 +3,7 @@ import './productswiper.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
 
 const ProductSwiper = () => {
   const settings = {
@@ -41,14 +42,27 @@ const ProductSwiper = () => {
   return (
     <div className="productswiper">
       <Slider {...settings}>
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
-        <SwiperProductCard />
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
+        <Link to='/products/123'>
+          <SwiperProductCard />
+        </Link>
       </Slider>
     </div>
   )

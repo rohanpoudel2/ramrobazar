@@ -1,4 +1,37 @@
 @import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.menu {
+  position: fixed;
+  top: 80px;
+  right: 0px;
+  z-index: 100;
+
+
+  .paper {
+    background-color: $primary-color;
+
+  }
+
+  .menuitem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-family: $main-font;
+    font-weight: 300;
+    height: 40px;
+
+    .icon {
+      color: $light-color;
+      margin-right: 10px;
+    }
+
+  }
+
+  .first {
+    justify-content: space-between;
+  }
+}
 
 .topbar {
   background-color: $primary-color;
@@ -100,6 +133,7 @@
             span {
               margin-left: 10px;
               font-weight: 400;
+              cursor: pointer;
             }
           }
 

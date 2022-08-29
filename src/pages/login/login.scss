@@ -1,0 +1,150 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.login {
+  margin-top: 90px;
+  display: flex;
+
+  .left {
+    flex: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .right {
+    flex: 1;
+
+    .existingUsers {
+      display: flex;
+      background-color: $primary-color;
+      padding: 20px;
+      border-radius: 5px;
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+
+        .top {
+          font-size: 20px;
+          font-weight: 600;
+          color: $heading-color;
+        }
+
+        .bottom {
+          display: flex;
+          color: $light-color;
+          font-weight: 300;
+
+          .last {
+            font-size: 16px;
+            margin-left: 5px;
+            color: $heading-color;
+            font-weight: 400;
+          }
+        }
+      }
+
+      .right {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .login-title {
+      font-size: 22px;
+      font-weight: 500;
+      color: $heading-color;
+      margin-top: 50px;
+    }
+
+    .login-details {
+      margin-top: 30px;
+      border-bottom: 1px solid lightgray;
+      padding-bottom: 50px;
+
+      .form-item {
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+
+        span {
+          font-size: 29px;
+        }
+
+        input {
+          width: 100%;
+          height: 40px;
+          border: none;
+          outline: none;
+          padding: 5px;
+
+          &::placeholder {
+            font-size: 18px;
+            color: $light-color;
+            font-weight: 300;
+          }
+        }
+
+        margin-bottom: 10px;
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      height: 50px;
+      background-color: transparent;
+      border: 1px solid $light-color;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .last-items {
+      display: flex;
+      flex-direction: column;
+
+      .forgot {
+        width: 100%;
+        font-size: 14px;
+        color: $heading-color;
+      }
+
+      .signup {
+        color: $heading-color;
+        font-weight: 600;
+        margin-top: 30px;
+        font-size: 14px;
+
+        ass {
+          text-decoration: underline;
+          font-weight: 300;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+}
