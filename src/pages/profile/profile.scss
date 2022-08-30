@@ -1,3 +1,168 @@
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
 .profile {
   margin-top: 90px;
+  display: flex;
+  font-family: $main-font;
+
+  .left {
+    flex: 1;
+    background-color: $primary-color;
+    padding: 20px;
+    height: 100vh;
+    border-radius: 5px;
+
+    .top {
+      color: $light-color;
+
+      .user-avatar {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          width: 80px;
+          height: 80px;
+          margin-right: 20px;
+          opacity: 0.5;
+        }
+
+        span {
+          font-weight: 200;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .bottom {
+      margin: 30px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        background-color: transparent;
+        border: 1px solid $light-color;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+        color: $light-color;
+        cursor: pointer;
+      }
+
+      .icon {
+        font-size: 20px;
+        color: $light-color;
+      }
+    }
+
+    .leftbottom {
+      font-size: 14px;
+      margin: 20px 0px;
+      color: $light-color;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+
+      .details {
+        margin: 10px 0px;
+      }
+
+      .location {
+        margin: 10px 0px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+  }
+
+  .middle {
+    flex: 2;
+    margin: 0px 20px;
+    background-color: $primary-color;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    .icon {
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+
+
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+      color: $heading-color;
+    }
+
+    .css-1aquho2-MuiTabs-indicator {
+      background-color: $heading-color;
+      height: 3px;
+    }
+
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+      font-family: $main-font;
+      font-weight: 300;
+      color: $light-color;
+    }
+
+    .no {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .nopost {
+        width: 50%;
+        height: 100%;
+      }
+
+      span {
+        margin-top: 20px;
+        color: $light-color;
+        letter-spacing: 1px;
+        font-weight: 300;
+      }
+    }
+
+    .analytics-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      color: $light-color;
+      padding: 20px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+
+      .top {
+        font-size: 24px;
+
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 300;
+        font-size: 14px;
+
+        .icon {
+          position: relative;
+          top: 0;
+          right: 0;
+          margin-right: 10px;
+          color: $light-color;
+        }
+      }
+
+    }
+
+
+  }
+
+  .right {
+    flex: 1;
+  }
+
 }
