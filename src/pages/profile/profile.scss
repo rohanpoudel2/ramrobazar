@@ -158,11 +158,60 @@
 
     }
 
+    .wishlist {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      span {
+        line-height: 24px;
+        color: $light-color;
+        font-weight: 300;
+        padding: 0px 70px;
+        text-align: justify;
+        margin-top: 10px;
+      }
+    }
+
+    .reviews-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 150px;
+        height: 150px;
+      }
+
+      span {
+        margin-top: 20px;
+        font-weight: 300;
+        font-size: 18px;
+      }
+    }
+
 
   }
 
   .right {
     flex: 1;
+    background-color: $primary-color;
+    border-radius: 5px;
+    padding: 20px;
+    height: 100vh;
+
+    span {
+      font-size: 14px;
+      font-weight: 300;
+    }
   }
 
 }

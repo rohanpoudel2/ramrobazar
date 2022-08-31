@@ -66,7 +66,7 @@ const Profile = () => {
         <div className="top">
           <div className="user-avatar">
             <img
-              src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"
+              src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png"
               alt="userAvatar"
             />
             <span>To add new information to profile</span>
@@ -110,7 +110,7 @@ const Profile = () => {
           <TabPanel value={value} index={0}>
             <div className="no">
               <img
-                src="https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?w=2000"
+                src="https://img.freepik.com/free-vector/human-hand-holding-mobile-phone-with-text-messages_74855-6531.jpg?w=1480&t=st=1661916442~exp=1661917042~hmac=796eb00ed73ffad4f44964daf43ff98e6d541289360fc6127b5cb6c1d0e43748"
                 alt="noPost"
                 className='nopost'
               />
@@ -179,14 +179,30 @@ const Profile = () => {
             </Box>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            <div className="wishlist">
+              <img
+                src="https://img.freepik.com/free-vector/human-hand-holding-mobile-phone-with-text-messages_74855-6531.jpg?w=1480&t=st=1661916442~exp=1661917042~hmac=796eb00ed73ffad4f44964daf43ff98e6d541289360fc6127b5cb6c1d0e43748"
+                alt="noWishList"
+              />
+              <span>You have no items in your wishlist. Add items to your wishlist to see them here. You can export products from Here</span>
+            </div>
           </TabPanel>
           <TabPanel value={value} index={3}>
-            Item Four
+            <div className="reviews-section">
+              <img
+                src="https://img.freepik.com/free-vector/online-review-concept-illustration_114360-1398.jpg?w=1380&t=st=1661916906~exp=1661917506~hmac=56b41436658c485dc789547fdd0f7f18f5c25b876db1acd5c6b4b780aa618f31"
+                alt="noReviews"
+              />
+              <span>No Reviews Yet</span>
+            </div>
           </TabPanel>
         </Box>
       </div>
-      <div className="right">right</div>
+      <div className="right">
+        <span>
+          RamroSelect | Terms of Use | Safety Tips | Posting Rules | FAQ | Contact | Report Bugs
+        </span>
+      </div>
     </div>
   )
 }
