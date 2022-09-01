@@ -3,6 +3,7 @@
 
 .box {
   font-family: $main-font;
+  color: $body-color;
 
   .top {
     .top-bar {
@@ -27,7 +28,7 @@
     .bottom-bar {
       display: flex;
       align-items: center;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       padding: 30px 0px;
       border-bottom: 1px solid lightgray;
 
@@ -89,8 +90,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 200px;
-        height: 150px;
+        width: 150px;
+        height: 80px;
         border: 1px dashed lightgray;
         border-radius: 10px;
         background-color: $primary-color;
@@ -109,18 +110,167 @@
       }
     }
 
-    button {
-      width: 30%;
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: transparent;
-      border: 1px solid lightgray;
-      border-radius: 10px;
-      color: lightgray;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      margin: 0px 20px 20px 0px;
+    .second-step {
+      select {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 18px;
+        color: $light-color;
+        border-radius: 20px;
+        border: 1px solid lightgray;
+        font-weight: 300;
+        outline: none;
+        margin-bottom: 10px;
+      }
+
+      .location {
+        display: flex;
+        margin-top: 20px;
+        border: 1px solid lightgray;
+        border-radius: 20px;
+        padding: 5px;
+        align-items: center;
+
+        input {
+          width: 100%;
+          padding: 10px 20px;
+          border: none;
+          font-size: 14px;
+        }
+
+        .icon {
+          opacity: 0.5;
+        }
+      }
+
+      .desc {
+        width: 100%;
+
+        input {
+          width: 98%;
+          padding: 10px;
+          border-radius: 10px;
+          border: 1px solid lightgray;
+          font-size: 16px;
+
+          &::placeholder {
+            font-weight: 300;
+            position: absolute;
+          }
+        }
+      }
+
+      .type {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        .type-item {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          span {
+            font-weight: 600;
+
+          }
+        }
+      }
+
+      .hide {
+        display: flex;
+        padding: 10px;
+        margin-top: 10px;
+
+        input {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .third-step {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        font-size: 16px;
+        outline: none;
+      }
+
+      span {
+        &:first-of-type {
+          margin: 10px 0px;
+          font-size: 12px;
+        }
+      }
+
+      .subhead {
+        margin-bottom: 10px;
+      }
+
+      select {
+        padding: 10px 20px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 18px;
+        font-weight: 500;
+        color: $heading-color;
+      }
+
+      .type {
+        .type-item {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          label {
+            font-size: 12px;
+          }
+
+          span {
+            margin: 0;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .fourth-step {
+
+      .ad-preview {
+        padding: 20px;
+        border: 1px dashed lightgray;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 100px;
+      justify-content: space-between;
+
+      button {
+        width: 30%;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: transparent;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        color: lightgray;
+        margin: 0px 20px 20px 0px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
