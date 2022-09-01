@@ -34,11 +34,16 @@ const UploadAds = ({ toggle }) => {
 
   const [stepCounter, setStepCounter] = React.useState(1);
   console.log(stepCounter)
-  const openn = toggle;
+  const openn = toggle || false;
 
   const dispatch = useDispatch()
-  const handleOpen = () => dispatch(open());
-  const handleClose = () => dispatch(close());
+  const handleOpen = () => {
+    dispatch(open())
+  };
+  const handleClose = () => {
+    dispatch(close())
+    setStepCounter(1)
+  };
 
   const [checked, setChecked] = React.useState(false);
 

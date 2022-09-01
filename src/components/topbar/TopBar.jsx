@@ -105,11 +105,9 @@ const TopBar = () => {
 
           <Paper sx={{ width: 320, maxWidth: '100%' }} className='paper'>
             <MenuList>
-              <MenuItem>
+              <MenuItem component={Link} to='/profile' >
                 <div className="menuitem first">
-                  <Link to='/profile'>
-                    <span>My Profile</span>
-                  </Link>
+                  <span>My Profile</span>
                   <ArrowForwardIcon className='icon' />
                 </div>
               </MenuItem>
