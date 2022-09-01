@@ -16,16 +16,31 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import UploadAds from '../uploadads/UploadAds';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { open } from '../../redux/AddPostSlice'
+
+
 
 
 
 const TopBar = () => {
   const [ToggleMenu, setToggleMenu] = React.useState(false);
+  const [TogglePost, setTogglePost] = React.useState('');
+
+  const state = useSelector((state) => state.AddPost.value)
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    setTogglePost(state)
+  }, [state])
   const user = true;
   return (
     <>
       <div className="topbar">
         <Container maxWidth='xl'>
+          {<UploadAds toggle={TogglePost} />}
           <div className="wrapper">
             <div className="left">
               <div className="logo">
@@ -55,7 +70,7 @@ const TopBar = () => {
                   </div>
                 </div>
                 <div className="button">
-                  <AddIcon className='icon' />
+                  <AddIcon className='icon add' onClick={() => dispatch(open())} />
                   <div className="indicator">
 
                   </div>
