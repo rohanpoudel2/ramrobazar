@@ -20,6 +20,7 @@ import UploadAds from '../uploadads/UploadAds';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { open } from '../../redux/AddPostSlice'
+import Alerts from '../alert/Alerts';
 
 
 const TopBar = () => {
@@ -39,7 +40,9 @@ const TopBar = () => {
     <>
       <div className="topbar">
         <Container maxWidth='xl'>
-          {<UploadAds toggle={TogglePost} />}
+          {user &&
+            < UploadAds toggle={TogglePost} />
+          }
           <div className="wrapper">
             <div className="left">
               <div className="logo">
@@ -134,6 +137,9 @@ const TopBar = () => {
             </MenuList>
           </Paper>
         }
+      </div>
+      <div className="alert">
+        {TogglePost && !user && <Alerts />}
       </div>
     </>
   )
