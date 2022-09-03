@@ -22,9 +22,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { open } from '../../redux/AddPostSlice'
 
 
-
-
-
 const TopBar = () => {
   const [ToggleMenu, setToggleMenu] = React.useState(false);
   const [TogglePost, setTogglePost] = React.useState('');
@@ -35,7 +32,9 @@ const TopBar = () => {
   React.useEffect(() => {
     setTogglePost(state)
   }, [state])
-  const user = true;
+
+  const user = false;
+
   return (
     <>
       <div className="topbar">

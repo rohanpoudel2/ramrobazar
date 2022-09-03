@@ -79,7 +79,7 @@
     .login-details {
       margin-top: 30px;
       border-bottom: 1px solid lightgray;
-      padding-bottom: 50px;
+      padding-bottom: 20px;
 
       .form-item {
         border: 1px solid lightgray;
@@ -145,6 +145,20 @@
         }
       }
 
+    }
+
+    .ack {
+      display: flex;
+      margin-top: 20px;
+
+      input {
+        margin-right: 10px;
+      }
+
+      span {
+        line-height: 20px;
+        color: $light-color;
+      }
     }
   }
 }
