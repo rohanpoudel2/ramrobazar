@@ -1,7 +1,7 @@
 import './login.scss';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import { app } from '../../firebase/config';
 
 const Login = () => {
@@ -11,21 +11,62 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false)
 
-  const auth = getAuth();
+  const [error, setError] = useState({
+    err: false,
+    msg: ''
+  });
 
+  const auth = getAuth(app);
 
   const handleLogin = () => {
+    setLoading(true)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
+        setError({
+          err: false,
+          msg: ''
+        })
+        setLoading(false)
       })
       .catch((error) => {
-        console.log(error)
+        setError({
+          err: true,
+          msg: error.message
+        })
+        setLoading(false)
       });
   }
+
+  const handelSignUp = () => {
+    if (ack) {
+      setLoading(true)
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          updateProfile(auth.currentUser, {
+            displayName: username
+          })
+          setError({
+            err: false,
+            msg: ''
+          })
+          setLoading(false)
+        })
+        .catch((error) => {
+          setError({
+            err: true,
+            msg: error.message
+          })
+          setLoading(false)
+        });
+    } else {
+      alert('Please agree to Terms and conditions')
+    }
+  }
+
+
 
   return (
     <div className="login">
@@ -52,24 +93,31 @@ const Login = () => {
             <div className="form-item">
               <input type="mail" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} />
             </div>
-
-            <div className="form-item">
-              <span>🇳🇵</span>
-              <input type="text" placeholder='Phone Number' />
-            </div>
+            {!login &&
+              < div className="form-item">
+                <input type="text" placeholder='Username' value={username} onChange={(e) => { setUsername(e.target.value) }} />
+              </div>
+            }
             <div className="form-item">
               <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
               <RemoveRedEyeIcon className='icon' />
             </div>
           </form>
+          {
+            error.err &&
+            <div className="error">
+              Massive Error: {error.msg.split('/')[1].split(')')[0].toUpperCase()}
+            </div>
+          }
         </div>
-        {!login &&
+        {
+          !login &&
           <div className="ack">
             <input type="checkbox" onClick={() => { setAck(!ack) }} />
             <span>I hereby accept all the Terms and Conditions of Ramrobazar.</span>
           </div>
         }
-        <button type='submit' onClick={handleLogin}>{!login ? 'Sign Up' : 'Log In'}</button>
+        <button type='submit' onClick={login ? handleLogin : handelSignUp}>{loading ? 'Loading...' : !login ? 'Sign Up' : 'Log In'}</button>
         <div className="last-items">
           {!login &&
             <span className="forgot">Forgot Password?</span>

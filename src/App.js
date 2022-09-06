@@ -34,6 +34,7 @@ const App = () => {
     });
   }, [])
 
+
   return (
     <BrowserRouter>
       <div className='app'>
@@ -41,14 +42,19 @@ const App = () => {
           <TopBar />
         }
         <Container maxWidth='xl'>
-          <Routes path='/'>
-            <Route index element={<Home />} />
-            <Route path='/products/:productId' element={<Product />} />
-            <Route path='/login' element={User ? <Home /> : <Login />} />
-            <Route path='/profile' element={User ? <Profile /> : <Home />} />
-            <Route path='/loading' element={loading ? <Loading /> : <Home />} />
-            <Route path='*' element={<Home />} />
-          </Routes>
+          {loading ?
+            <Routes path='/'>
+              <Route path='*' element={<Loading />} />
+            </Routes>
+            :
+            <Routes path='/'>
+              <Route index element={<Home />} />
+              <Route path='/products/:productId' element={<Product />} />
+              <Route path='/login' element={User ? <Home /> : <Login />} />
+              <Route path='/profile' element={User ? <Profile /> : <Home />} />
+              <Route path='*' element={<Home />} />
+            </Routes>
+          }
         </Container>
       </div>
     </BrowserRouter>

@@ -21,10 +21,14 @@ import UploadAds from '../uploadads/UploadAds';
 import { useSelector, useDispatch } from 'react-redux'
 import { open } from '../../redux/AddPostSlice'
 import Alerts from '../alert/Alerts';
+import { getAuth, signOut } from "firebase/auth";
 
 
 
 const TopBar = () => {
+
+  const auth = getAuth();
+
   const [ToggleMenu, setToggleMenu] = React.useState(false);
   const [TogglePost, setTogglePost] = React.useState('');
 
@@ -35,7 +39,18 @@ const TopBar = () => {
     setTogglePost(state)
   }, [state])
 
-  const user = useSelector((state) => state.User.value.user);
+
+  const user = auth.currentUser
+  console.log(user)
+
+  const logout = () => {
+
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
 
   return (
     <>
@@ -90,7 +105,7 @@ const TopBar = () => {
                       </> :
                       <>
                         <AccountCircleIcon className='icon' />
-                        <span onClick={() => setToggleMenu(!ToggleMenu)}>Rohan</span>
+                        <span onClick={() => setToggleMenu(!ToggleMenu)}>{user.displayName || 'New User'}</span>
                       </>
                     }
                   </div>
@@ -109,7 +124,7 @@ const TopBar = () => {
 
           <Paper sx={{ width: 320, maxWidth: '100%' }} className='paper'>
             <MenuList>
-              <MenuItem component={Link} to='/profile' >
+              <MenuItem component={Link} to='/profile' onClick={() => setToggleMenu(false)} >
                 <div className="menuitem first">
                   <span>My Profile</span>
                   <ArrowForwardIcon className='icon' />
@@ -130,7 +145,10 @@ const TopBar = () => {
                 </div>
               </MenuItem>
               <Divider />
-              <MenuItem>
+              <MenuItem onClick={() => {
+                setToggleMenu(false)
+                logout()
+              }}>
                 <div className="menuitem">
                   <LogoutIcon className='icon' />
                   <span>Log Out</span>

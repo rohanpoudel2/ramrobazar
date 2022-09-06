@@ -17,6 +17,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 
+import { useSelector } from 'react-redux';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,6 +61,10 @@ const Profile = () => {
     setValue(newValue);
   };
 
+  const user = useSelector((state) => state.User.value.user)
+
+  let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(user.metadata.createdAt)
+
   return (
     <div className="profile">
       <div className="left">
@@ -78,9 +83,9 @@ const Profile = () => {
         </div>
         <Divider />
         <div className="leftbottom">
-          <span className="username">Rohan</span>
-          <span className="details">9801232123 | rohanpoudel@duck.com</span>
-          <div className="since">Member Since: 2020-03-05</div>
+          <span className="username">{user.displayName}</span>
+          <span className="details">{user.phoneNumber || 'Add Phone'} | {user.email}</span>
+          <div className="since">Member Since: {date}</div>
           <div className="location">
             <LocationOnIcon />
             Kathmandu
