@@ -75,6 +75,89 @@
       }
     }
 
+    .editmode {
+      display: flex;
+      flex-direction: column;
+
+      .edit-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $heading-color;
+        padding: 10px;
+
+        .icon {
+          color: $light-color;
+        }
+      }
+
+      .edit-profile-section {
+        .profileImage {
+          margin: 20px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+          }
+
+          span {
+            color: $light-color;
+            font-weight: 300;
+            font-size: 14px;
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .edit-profile-inputs {
+        form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          .form-item {
+            margin-bottom: 20px;
+
+            fieldset {
+              padding: 5px 10px;
+              border-radius: 10px;
+              background-color: white;
+              border: 1px solid lightgray;
+
+              legend {
+                font-size: 12px;
+              }
+
+              input {
+                width: 100%;
+                height: 25px;
+                border: none;
+                outline: none;
+              }
+            }
+          }
+
+          button {
+            padding: 10px 5px;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            cursor: pointer;
+
+            span {
+              font-weight: 300;
+              font-size: 16px;
+              color: rgba($heading-color, 0.7);
+            }
+          }
+        }
+      }
+    }
+
+
   }
 
   .middle {

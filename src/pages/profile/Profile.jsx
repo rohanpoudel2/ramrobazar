@@ -18,6 +18,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 import { useSelector } from 'react-redux';
+import CloseIcon from '@mui/icons-material/Close';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,10 +57,16 @@ function a11yProps(index) {
 
 const Profile = () => {
   const [value, setValue] = React.useState(0);
+  const [editMode, setEditMode] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setEditMode(false)
+  }
 
   const user = useSelector((state) => state.User.value.user)
 
@@ -68,38 +75,89 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="left">
-        <div className="top">
-          <div className="user-avatar">
-            <img
-              src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png"
-              alt="userAvatar"
-            />
-            <span>To add new information to profile</span>
-          </div>
-        </div>
-        <div className="bottom">
-          <button>Edit Profile</button>
-          <ShareIcon className='icon' />
-        </div>
-        <Divider />
-        <div className="leftbottom">
-          <span className="username">{user.displayName}</span>
-          <span className="details">{user.phoneNumber || 'Add Phone'} | {user.email}</span>
-          <div className="since">Member Since: {date}</div>
-          <div className="location">
-            <LocationOnIcon />
-            Kathmandu
-          </div>
-          <div className="reviews">
-            <div className="start">
-              <StarBorderIcon />
-              <StarBorderIcon />
-              <StarBorderIcon />
-              <StarBorderIcon />
-              <StarBorderIcon />
+        {editMode
+          ?
+          <div className='editmode'>
+            <div className="edit-top">
+              <span>Edit Profile</span>
+              <CloseIcon className='icon' />
+            </div>
+            <Divider />
+            <div className="edit-profile-section">
+              <div className="profileImage">
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/005/211/185/original/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-illustration-on-a-white-isolated-background-vector.jpg"
+                  alt="userprofile"
+                />
+                <span>You can update your profile below.</span>
+              </div>
+            </div>
+            <div className="edit-profile-inputs">
+              <form onSubmit={handleUpdate}>
+                <div className="form-item">
+                  <fieldset>
+                    <legend>Full Name</legend>
+                    <input type="text" placeholder='Full Name' />
+                  </fieldset>
+                </div>
+                <div className="form-item">
+                  <fieldset>
+                    <legend>Email</legend>
+                    <input type="mail" placeholder='Email' />
+                  </fieldset>
+                </div>
+                <div className="form-item">
+                  <fieldset>
+                    <legend>Date of Birth</legend>
+                    <input type="date" />
+                  </fieldset>
+                </div>
+                <div className="form-item">
+                  <fieldset>
+                    <legend>City</legend>
+                    <input type="text" placeholder='City' />
+                  </fieldset>
+                </div>
+                <button type='submit'><span>Update Profile</span></button>
+              </form>
             </div>
           </div>
-        </div>
+          :
+          <>
+            <div className="top">
+              <div className="user-avatar">
+                <img
+                  src="https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png"
+                  alt="userAvatar"
+                />
+                <span>To add new information to profile</span>
+              </div>
+            </div>
+            <div className="bottom">
+              <button onClick={() => setEditMode(true)}>Edit Profile</button>
+              <ShareIcon className='icon' />
+            </div>
+            <Divider />
+            <div className="leftbottom">
+              <span className="username">{user.displayName}</span>
+              <span className="details">{user.phoneNumber || 'Add Phone'} | {user.email}</span>
+              <div className="since">Member Since: {date}</div>
+              <div className="location">
+                <LocationOnIcon />
+                Kathmandu
+              </div>
+              <div className="reviews">
+                <div className="start">
+                  <StarBorderIcon />
+                  <StarBorderIcon />
+                  <StarBorderIcon />
+                  <StarBorderIcon />
+                  <StarBorderIcon />
+                </div>
+              </div>
+            </div>
+          </>
+        }
       </div>
       <div className="middle">
         <Box sx={{ width: '100%' }}>
