@@ -1,11 +1,31 @@
 import './login.scss';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from '../../firebase/config';
 
 const Login = () => {
 
   const [login, setLogin] = useState(true)
   const [ack, setAck] = useState(false)
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const auth = getAuth();
+
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
 
   return (
     <div className="login">
@@ -28,17 +48,17 @@ const Login = () => {
         <div className="login-title"> {login ? 'Login' : 'Sign Up'}</div>
         <div className="login-details">
           <form>
-            {!login &&
-              <div className="form-item">
-                <input type="text" placeholder='Full Name' />
-              </div>
-            }
+
+            <div className="form-item">
+              <input type="mail" placeholder='Email' value={email} onChange={(e) => { setEmail(e.target.value) }} />
+            </div>
+
             <div className="form-item">
               <span>🇳🇵</span>
               <input type="text" placeholder='Phone Number' />
             </div>
             <div className="form-item">
-              <input type="password" placeholder='Password' />
+              <input type="password" placeholder='Password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
               <RemoveRedEyeIcon className='icon' />
             </div>
           </form>
@@ -49,7 +69,7 @@ const Login = () => {
             <span>I hereby accept all the Terms and Conditions of Ramrobazar.</span>
           </div>
         }
-        <button type='submit'>{!login ? 'Sign Up' : 'Log In'}</button>
+        <button type='submit' onClick={handleLogin}>{!login ? 'Sign Up' : 'Log In'}</button>
         <div className="last-items">
           {!login &&
             <span className="forgot">Forgot Password?</span>

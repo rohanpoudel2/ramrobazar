@@ -23,6 +23,7 @@ import { open } from '../../redux/AddPostSlice'
 import Alerts from '../alert/Alerts';
 
 
+
 const TopBar = () => {
   const [ToggleMenu, setToggleMenu] = React.useState(false);
   const [TogglePost, setTogglePost] = React.useState('');
@@ -34,7 +35,7 @@ const TopBar = () => {
     setTogglePost(state)
   }, [state])
 
-  const user = false;
+  const user = useSelector((state) => state.User.value.user);
 
   return (
     <>
@@ -60,9 +61,10 @@ const TopBar = () => {
             <div className="right">
               <div className="buttons">
                 <div className="button active">
-                  <HomeIcon className='icon' />
+                  <Link to='/'>
+                    <HomeIcon className='icon' />
+                  </Link>
                   <div className="indicator">
-
                   </div>
                 </div>
                 <div className="button ">
