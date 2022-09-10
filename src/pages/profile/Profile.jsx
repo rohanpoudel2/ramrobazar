@@ -80,7 +80,7 @@ const Profile = () => {
           <div className='editmode'>
             <div className="edit-top">
               <span>Edit Profile</span>
-              <CloseIcon className='icon' />
+              <CloseIcon className='icon' onClick={() => setEditMode(false)} />
             </div>
             <Divider />
             <div className="edit-profile-section">

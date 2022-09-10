@@ -15,6 +15,8 @@ import { Divider, Switch } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import GenericProductCard from '../genericproductcard/GenericProductCard'
 
+import { useForm, Controller } from 'react-hook-form';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -33,7 +35,8 @@ const style = {
 const UploadAds = ({ toggle }) => {
 
   const [stepCounter, setStepCounter] = React.useState(1);
-  console.log(stepCounter)
+  const [formData, setFormDate] = React.useState({});
+
   const openn = toggle || false;
 
   const dispatch = useDispatch()
@@ -45,12 +48,6 @@ const UploadAds = ({ toggle }) => {
     setStepCounter(1)
   };
 
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
   React.useEffect(() => {
     if (toggle) {
       handleOpen()
@@ -58,7 +55,35 @@ const UploadAds = ({ toggle }) => {
       handleClose()
     }
   }, [toggle, stepCounter])
-  console.log(toggle)
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+
+  const onSubmit = (data) => {
+    setStepCounter(stepCounter + 1)
+    setFormDate(data)
+    console.log(data)
+  };
+
+  const btns = () => {
+    return (
+      <div className='buttons'>
+        {stepCounter !== 1 &&
+          <button type='button' className="backbtn" onClick={() => { setStepCounter(stepCounter - 1) }}><ArrowBackIcon className='icon' /> Back</button>
+        }
+        {
+          stepCounter !== 4 &&
+          <button type='submit'>Next</button>
+        }
+      </div>
+    )
+  }
+
   return (
     <div className="uploadads">
       <Modal
@@ -66,7 +91,6 @@ const UploadAds = ({ toggle }) => {
         onClose={handleClose}
       >
         <Box sx={style} className='box'>
-
           <div className="top">
             <div className="top-bar">
               <span>Post Ads</span>
@@ -82,112 +106,171 @@ const UploadAds = ({ toggle }) => {
           </div>
           <div className="bottom">
             {stepCounter === 1 &&
-              <div className="b-top">
-
-                <input type="text" placeholder='Ad Title *' />
-                <div className="rnd">
-                  <span>For example: Brand, Model, Color, and size</span>
-                  <span className="counter">0/50</span>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="b-top">
+                  <input placeholder='Ad Title *' {...register('adTitle', { required: true, maxLength: 50 })} />
+                  {errors.adTitle?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Title is required
+                    </span>
+                  </>}
+                  <div className="rnd">
+                    <span>For example: Brand, Model, Color, and size</span>
+                    <span className="counter">0/50</span>
+                  </div>
+                  <div className="upload">
+                    <input type="file" id='file' name='file' hidden />
+                    <label htmlFor="file">
+                      <AddIcon className='icon' />
+                    </label>
+                    <span>Choose a photo *</span>
+                  </div>
                 </div>
-                <div className="upload">
-                  <input type="file" id='file' name='file' hidden />
-                  <label htmlFor="file">
-                    <AddIcon className='icon' />
-                  </label>
-                  <span>Choose a photo *</span>
-                </div>
-              </div>
+                {btns()}
+              </form>
             }
             {
               stepCounter === 2 &&
-              <div className="second-step">
-                <select name="category" id="category">
-                  <option selected disabled>Category *</option>
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="opel">Opel</option>
-                  <option value="audi">Audi</option>
-                </select>
-                <select name="condition" id="condition">
-                  <option selected disabled>Condition *</option>
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="opel">Opel</option>
-                  <option value="audi">Audi</option>
-                </select>
-                <Divider />
-                <div className="location">
-                  <input type="text" placeholder='Entire Nepal' />
-                  <LocationOnIcon className='icon' />
-                </div>
-                <div className="hide">
-                  <input type="checkbox" />
-                  <label>Hide my precise location.</label>
-                </div>
-                <div className="desc">
-                  <input type="text" placeholder='Description *' />
-                </div>
-                <div className="type">
-                  <div className="type-item">
-                    <span>Delivery</span>
-                    <Switch
-                      checked={checked}
-                      onChange={handleChange}
-                      inputProps={{ 'aria-label': 'controlled' }}
-                    />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="second-step">
+                  <select name="category" id="category" {...register('adCategory', { required: true })}>
+                    <option value='' selected disabled>Condition *</option>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                  {errors.adCategory?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Category is Required
+                    </span>
+                  </>}
+                  <select name="condition" id="condition" {...register('adCondition', { required: true })}>
+                    <option value='' selected disabled>Condition *</option>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                  {errors.adCondition?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Condition is Required
+                    </span>
+                  </>}
+                  <Divider />
+                  <div className="location">
+                    <input type="text" placeholder='Entire Nepal' {...register('adLocation', { required: true })} />
+                    <LocationOnIcon className='icon' />
                   </div>
-                  <div className="type-item">
-                    <span>Is Adult Content?</span>
-                    <Switch
-                      checked={checked}
-                      onChange={handleChange}
-                      inputProps={{ 'aria-label': 'controlled' }}
-                    />
+                  {errors.adCategory?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Location is Required
+                    </span>
+                  </>}
+                  <div className="hide">
+                    <input type="checkbox" {...register('adHideLocation', { required: false })} />
+                    <label>Hide my precise location.</label>
+                  </div>
+                  <div className="desc" >
+                    <input type="text" placeholder='Description *'{...register('adDescription', { required: true })} />
+                    {errors.adDescription?.type === 'required' && <>
+                      <span style={{ color: 'red', fontWeight: 600 }}>
+                        *Your Ad Description is Required
+                      </span>
+                    </>}
+                  </div>
+                  <div className="type">
+                    <div className="type-item">
+                      <span>Delivery</span>
+                      <Controller
+                        control={control}
+                        name='adDelivery'
+                        defaultValue={false}
+                        render={({ field: { onChange, value } }) => (
+                          <>
+                            <Switch onChange={onChange} checked={value} />
+                          </>
+                        )}
+                      />
+                    </div>
+                    <div className="type-item">
+                      <span>Is Adult Content?</span>
+                      <Controller
+                        control={control}
+                        name='adAdultContent'
+                        defaultValue={false}
+                        render={({ field: { onChange, value } }) => (
+                          <>
+                            <Switch onChange={onChange} checked={value} />
+                          </>
+                        )}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+                {btns()}
+              </form>
             }
             {
               stepCounter === 3 &&
-              <div className="third-step">
-                <input type="text" placeholder='रु Price *' />
-                <span>Double check the price value you keep.</span>
-                <div className="subhead">
-                  Expiry Date
-                </div>
-                <select name="expiry" id="expiry">
-                  <option value="1 Month">1 Month</option>
-                  <option value="10 Days">10 Days</option>
-                </select>
-                <h3>Negotiable</h3>
-                <div className="type">
-                  <div className="type-item">
-                    <label>Can negotiate for price</label>
-                    <Switch
-                      checked={checked}
-                      onChange={handleChange}
-                      inputProps={{ 'aria-label': 'controlled' }}
-                    />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="third-step">
+                  <input type="number" placeholder='रु Price *' {...register('adPrice', {
+                    required: true,
+                    valueAsNumber: true
+                  })} />
+                  <span>Double check the price value you keep.</span>
+                  {errors.adPrice?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Price is Required
+                    </span>
+                  </>}
+                  <div className="subhead">
+                    Expiry Date
+                  </div>
+                  <select name="expiry" id="expiry" {...register('adExpiryTime', {
+                    required: true
+                  })}>
+                    <option value="1 Month">1 Month</option>
+                    <option value="10 Days">10 Days</option>
+                  </select>
+                  {errors.adExpiryTime?.type === 'required' && <>
+                    <span style={{ color: 'red', fontWeight: 600 }}>
+                      *Your Ad Expire Time is Required
+                    </span>
+                  </>}
+                  <h3>Negotiable</h3>
+                  <div className="type">
+                    <div className="type-item">
+                      <label>Can negotiate for price</label>
+                      <Controller
+                        control={control}
+                        name='adNegotiate'
+                        defaultValue={false}
+                        render={({ field: { onChange, value } }) => (
+                          <>
+                            <Switch onChange={onChange} checked={value} />
+                          </>
+                        )}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+                {btns()}
+              </form>
             }
             {
               stepCounter === 4 &&
-              <div className="fourth-step">
-                <span>Your Ad will look like this</span>
-                <div className="ad-preview">
-
-                  <GenericProductCard />
+              <form>
+                <div className="fourth-step">
+                  <span>Your Ad will look like this</span>
+                  <div className="ad-preview">
+                    <GenericProductCard adInfo={formData} />
+                  </div>
                 </div>
-              </div>
+                {btns()}
+              </form>
             }
-            <div className='buttons'>
-              {stepCounter !== 1 &&
-                <button className="backbtn" onClick={() => { setStepCounter(stepCounter - 1) }}><ArrowBackIcon className='icon' /> Back</button>
-              }
-              <button onClick={() => { setStepCounter(stepCounter + 1) }}>Next</button>
-            </div>
           </div>
         </Box>
       </Modal>
